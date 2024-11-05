@@ -1,0 +1,31 @@
+.quiz-container {
+    background: linear-gradient(to right, #6a11cb, #2575fc);
+    min-height: 100vh;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .card {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    color: #333;
+    width: 400px; /* Adjust width as necessary */
+  }
+  
+  .options button {
+    width: 100%;
+    transition: background-color 0.3s;
+  }
+  
+  .options button:hover {
+    background-color: #6a11cb; /* Change to your desired hover color */
+    color: white; /* Change text color on hover */
+  }
+  
+  .timer {
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+  

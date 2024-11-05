@@ -1,0 +1,26 @@
+.difficulty-selection-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #2b5876, #4e4376);
+    color: white;
+  }
+  
+  .card {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 12px;
+    width: 350px;
+  }
+  
+  .difficulty-btn {
+    font-weight: bold;
+    margin: 10px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .difficulty-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  }
+  
