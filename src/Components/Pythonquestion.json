@@ -15,6 +15,7 @@
         "options": ["print('Hello, World!')", "echo 'Hello, World!'", "System.out.println('Hello, World!')", "printf('Hello, World!')"],
         "correctOption": "print('Hello, World!')"
       },
+      
       {
         "question": "What keyword is used to define a function in Python?",
         "options": ["function", "define", "def", "func"],
