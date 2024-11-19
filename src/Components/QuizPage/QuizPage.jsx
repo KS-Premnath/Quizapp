@@ -2,9 +2,8 @@ import { useEffect, useState } from "react";
 import { useParams, useLocation, useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./QuizPage.css";
-import ReactQuestions from "../Question.json";
-import PythonQuestions from "../Components/Pythonquestion.json";
-import DifficultySelection from "./DifficultySelection";
+import ReactQuestions from "../../Data-json/Question.json";
+import PythonQuestions from "../../Data-json/Pythonquestion.json";
 
 const QuizPage = () => {
   const { topic, difficulty } = useParams();
@@ -12,39 +11,24 @@ const QuizPage = () => {
   const navigate = useNavigate();
   const userData = location.state?.userData;
 
-  const LSUpdatedQuestions = localStorage.getItem("questionsData")
-    ? JSON.parse(localStorage.getItem("questionsData"))
-    : [];
+  const timeLimitFromEnv = parseInt(import.meta.env.VITE_TIME_LIMIT) || 10;
+  const penaltyFromEnv = parseFloat(import.meta.env.VITE_PENALTY) || 0.5;
 
-  const reactQuestion =
-    Object.keys(LSUpdatedQuestions).length > 0
-      ? LSUpdatedQuestions["React"][difficulty]
-      : ReactQuestions[difficulty];
-
+ 
   const questionData =
     topic.toLowerCase() === "react"
-      ? reactQuestion
+      ? ReactQuestions[difficulty]
       : PythonQuestions[difficulty];
-
-      
 
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState(0);
   const [penaltyPoints, setPenaltyPoints] = useState(0);
   const [showScore, setShowScore] = useState(false);
-  const [timer, setTimer] = useState(10);
-  const penalty = 0.5;
-
-  // const storedquestionData = localStorage.getItem("questionData");
-  //    const intialquestionData = storedquestionData ? parseInt(storedquestionData) : 5;
-  //    setCurrentQuestion(intialquestionData);
+  const [timer, setTimer] = useState(timeLimitFromEnv);
 
   useEffect(() => {
-    const storedTimeLimit = localStorage.getItem("timeLimit");
-    const initialTimeLimit = storedTimeLimit ? parseInt(storedTimeLimit) : 10;
-
-    setTimer(initialTimeLimit);
-  }, []);
+    setTimer(timeLimitFromEnv);
+  }, [timeLimitFromEnv]);
 
   useEffect(() => {
     let interval;
@@ -60,24 +44,33 @@ const QuizPage = () => {
   }, [timer, showScore]);
 
   const handleAnswerClick = (selectedOptionIndex) => {
-    const correctOptionIndex = questionData[currentQuestion].correctOption;
-
+    const correctOptionIndex = parseInt(questionData[currentQuestion].correctOption);
+  
+    console.log(`Selected Option Index: ${selectedOptionIndex}`);
+    console.log(`Correct Option Index: ${correctOptionIndex}`);
+  
     if (selectedOptionIndex === correctOptionIndex) {
-      setScore((prevScore) => prevScore + 1);
+      setScore((prevScore) => {
+        const newScore = prevScore + 1;
+        console.log("Score updated:", newScore);
+        return newScore;
+      });
     } else {
-      setPenaltyPoints((prevPenalty) => prevPenalty + penalty);
+      setPenaltyPoints((prevPenalty) => {
+        const newPenalty = prevPenalty + penaltyFromEnv;
+        console.log("Penalty updated:", newPenalty);
+        return newPenalty;
+      });
     }
+  
     handleNextQuestion();
   };
+  
 
   const handleNextQuestion = () => {
     if (currentQuestion < questionData.length - 1) {
       setCurrentQuestion((prev) => prev + 1);
-
-      const storedTimeLimit = localStorage.getItem("timeLimit");
-      const initialTimeLimit = storedTimeLimit ? parseInt(storedTimeLimit) : 10;
-
-      setTimer(initialTimeLimit);
+      setTimer(timeLimitFromEnv);
     } else {
       setShowScore(true);
       saveResultInLocalStorage();
@@ -86,6 +79,7 @@ const QuizPage = () => {
 
   const saveResultInLocalStorage = () => {
     const finalScore = score - penaltyPoints;
+    console.log(`Final Score Calculated: ${finalScore}`); 
     const newResult = {
       Name: userData?.name || "N/A",
       Email: userData?.email || "N/A",
@@ -102,6 +96,12 @@ const QuizPage = () => {
     localStorage.setItem("quizResults", JSON.stringify(storedResults));
   };
 
+  const getFinalScore = () => {
+    const finalScore = score - penaltyPoints;
+    console.log(`Final score before return: ${finalScore}`); 
+    return finalScore.toFixed(1);
+  };
+
   const handleFinishQuiz = () => {
     navigate("/");
   };
@@ -114,7 +114,7 @@ const QuizPage = () => {
             Your Score: {score}/{questionData.length}
           </h2>
           <h4>Points Lost Due to Penalty: {penaltyPoints.toFixed(1)}</h4>
-          <h3>Final Score: {(score - penaltyPoints).toFixed(1)}</h3>
+          <h3>Final Score: {getFinalScore()}</h3>
           <button className="btn btn-primary mt-3" onClick={handleFinishQuiz}>
             Finish
           </button>

@@ -1,0 +1,93 @@
+{
+  "easy": [
+    {
+      "question": "What is React?",
+      "options": ["Library", "Framework", "Language", "Database"],
+      "correctOption": 0
+    },
+    {
+      "question": "Which company developed React?",
+      "options": ["Google", "Facebook", "Microsoft", "Amazon"],
+      "correctOption": 1
+    },
+    {
+      "question": "What command is used to create a new React app?",
+      "options": ["npm create-react-app", "npx create-react-app", "npm start", "npx start"],
+      "correctOption": 1
+    },
+    {
+      "question": "Which of the following is used to render React elements?",
+      "options": ["ReactDOM.render", "React.render", "render.React", "DOMReact"],
+      "correctOption": 0
+    },
+    {
+      "question": "React components should always start with a ___ letter.",
+      "options": ["lowercase", "uppercase", "number", "symbol"],
+      "correctOption": 1
+    },
+    {
+      "question": "What is usestate?",
+      "options": ["class", "variable", "function", "State"],
+      "correctOption": 3
+    }
+  ],
+  "medium": [
+    {
+      "question": "What is JSX?",
+      "options": ["JavaScript XML", "JSON XML", "JavaScript HTML", "HTML XML"],
+      "correctOption": 0
+    },
+    {
+      "question": "Which hook is used to handle side effects?",
+      "options": ["useEffect", "useState", "useContext", "useReducer"],
+      "correctOption": 0
+    },
+    {
+      "question": "Props in React are ___",
+      "options": ["Mutable", "Immutable", "Volatile", "Optional"],
+      "correctOption": 1
+    },
+    {
+      "question": "What does React use to increase performance?",
+      "options": ["Virtual DOM", "Real DOM", "Shadow DOM", "Hybrid DOM"],
+      "correctOption": 0
+    },
+    {
+      "question": "What is a controlled component?",
+      "options": ["Component managed by React", "Component managed by DOM", "Component without props", "Component without state"],
+      "correctOption": 0
+    }
+  ],
+  "hard": [
+    {
+      "question": "What hook is used to manage state?",
+      "options": ["useReducer", "useEffect", "useState", "useContext"],
+      "correctOption": 2
+    },
+    {
+      "question": "Which hook is used to optimize performance by memoizing values?",
+      "options": ["useMemo", "useState", "useEffect", "useCallback"],
+      "correctOption": 0
+    },
+    {
+      "question": "In React, keys help ___",
+      "options": ["Identify elements", "Optimize memory", "Store state", "Control props"],
+      "correctOption": 0
+    },
+    {
+      "question": "Which lifecycle method is called after every render in functional components?",
+      "options": ["useEffect", "useMemo", "useState", "useRef"],
+      "correctOption": 0
+    },
+    {
+      "question": "What does useCallback do in React?",
+      "options": [
+        "Memoizes functions to prevent unnecessary re-renders",
+        "Handles asynchronous calls",
+        "Handles side effects",
+        "Stores values across renders"
+      ],
+      "correctOption": 0
+    }
+  ]
+}

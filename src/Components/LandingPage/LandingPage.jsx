@@ -11,7 +11,7 @@ const LandingPage = () => {
         <p className="mb-4">Choose a topic to get started!</p>
         <Link to="/react" className="btn btn-react btn-lg mx-2 landing-btn">React Quiz</Link>
         <Link to="/python" className="btn btn-python btn-lg mx-2 landing-btn">Python Quiz</Link>
-        <Link to="/admin" className="btn btn-dark btn-lg mx-2 landing-btn">Admin</Link> 
+        {/* <Link to="/admin" className="btn btn-dark btn-lg mx-2 landing-btn">Admin</Link>  */}
       </div>
     </div>
   );

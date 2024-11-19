@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import * as XLSX from "xlsx";
 import "bootstrap/dist/css/bootstrap.min.css";
-import ReactQuestions from "../Question.json";
-import PythonQuestions from "../Components/Pythonquestion.json";
+import ReactQuestions from "../../Question.json";
+import PythonQuestions from "../Pythonquestion.json";
 
 const AdminPage = ({ setIsAdminAuthenticated }) => {
   const navigate = useNavigate();

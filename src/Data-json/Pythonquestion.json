@@ -1,0 +1,88 @@
+{
+  "easy": [
+    {
+      "question": "What is Python?",
+      "options": ["Snake", "Language", "Framework", "IDE"],
+      "correctOption": 1
+    },
+    {
+      "question": "What symbol is used to start a comment in Python?",
+      "options": ["#", "//", "<!--", "/*"],
+      "correctOption": 0
+    },
+    {
+      "question": "How do you print 'Hello, World!' in Python?",
+      "options": ["print('Hello, World!')", "echo 'Hello, World!'", "System.out.println('Hello, World!')", "printf('Hello, World!')"],
+      "correctOption": 0
+    },
+    {
+      "question": "What keyword is used to define a function in Python?",
+      "options": ["function", "define", "def", "func"],
+      "correctOption": 2
+    },
+    {
+      "question": "What is the correct file extension for Python files?",
+      "options": [".py", ".java", ".txt", ".html"],
+      "correctOption": 0
+    }
+  ],
+  "medium": [
+    {
+      "question": "What is a dictionary in Python?",
+      "options": ["Data structure", "Function", "Loop", "Class"],
+      "correctOption": 0
+    },
+    {
+      "question": "Which method is used to add an item to a list in Python?",
+      "options": ["add()", "append()", "push()", "insert()"],
+      "correctOption": 1
+    },
+    {
+      "question": "Which keyword is used to handle exceptions in Python?",
+      "options": ["catch", "error", "try", "except"],
+      "correctOption": 3
+    },
+    {
+      "question": "What does len() do in Python?",
+      "options": ["Calculates length of a string", "Calculates sum", "Counts data types", "Creates a list"],
+      "correctOption": 0
+    },
+    {
+      "question": "What type does input() return by default?",
+      "options": ["int", "str", "float", "list"],
+      "correctOption": 1
+    }
+  ],
+  "hard": [
+    {
+      "question": "What does `__init__` do in Python?",
+      "options": ["Initialize a class", "Initialize a function", "Initialize a module", "None of the above"],
+      "correctOption": 0
+    },
+    {
+      "question": "How do you create a virtual environment in Python?",
+      "options": ["python -m venv env", "python --venv env", "python env", "py -v env"],
+      "correctOption": 0
+    },
+    {
+      "question": "What is the output of `3**2` in Python?",
+      "options": ["6", "9", "8", "3"],
+      "correctOption": 1
+    },
+    {
+      "question": "Which of the following is NOT a built-in Python data type?",
+      "options": ["tuple", "set", "dictionary", "queue"],
+      "correctOption": 3
+    },
+    {
+      "question": "What is the purpose of the `self` parameter in Python methods?",
+      "options": [
+        "Refers to the instance of the class",
+        "Refers to a global variable",
+        "Refers to a local variable",
+        "None of the above"
+      ],
+      "correctOption": 0
+    }
+  ]
+}
