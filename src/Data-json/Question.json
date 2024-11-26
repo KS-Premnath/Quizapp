@@ -3,7 +3,7 @@
     {
       "question": "What is React?",
       "options": ["Library", "Framework", "Language", "Database"],
-      "correctOption": 0
+      "correctOption": 1
     },
     {
       "question": "Which company developed React?",

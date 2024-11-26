@@ -11,10 +11,45 @@ const QuizPage = () => {
   const navigate = useNavigate();
   const userData = location.state?.userData;
 
-  const timeLimitFromEnv = parseInt(import.meta.env.VITE_TIME_LIMIT) || 10;
-  const penaltyFromEnv = parseFloat(import.meta.env.VITE_PENALTY) || 0.5;
-
  
+  const config = {
+    react: {
+      easy: { 
+        timeLimit: parseInt(import.meta.env.VITE_TIME_LIMIT_REACT_EASY) || 20,
+        penalty: parseFloat(import.meta.env.VITE_PENALTY_REACT_EASY) || 0.2,
+      },
+      medium: {
+        timeLimit: parseInt(import.meta.env.VITE_TIME_LIMIT_REACT_MEDIUM) || 15,
+        penalty: parseFloat(import.meta.env.VITE_PENALTY_REACT_MEDIUM) || 0.5,
+      },
+      hard: {
+        timeLimit: parseInt(import.meta.env.VITE_TIME_LIMIT_REACT_HARD) || 10,
+        penalty: parseFloat(import.meta.env.VITE_PENALTY_REACT_HARD) || 1,
+      },
+    },
+    python: {
+      easy: {
+        timeLimit: parseInt(import.meta.env.VITE_TIME_LIMIT_PYTHON_EASY) || 25,
+        penalty: parseFloat(import.meta.env.VITE_PENALTY_PYTHON_EASY) || 0.3,
+      },
+      medium: {
+        timeLimit: parseInt(import.meta.env.VITE_TIME_LIMIT_PYTHON_MEDIUM) || 20,
+        penalty: parseFloat(import.meta.env.VITE_PENALTY_PYTHON_MEDIUM) || 0.6,
+      },
+      hard: {
+        timeLimit: parseInt(import.meta.env.VITE_TIME_LIMIT_PYTHON_HARD) || 15,
+        penalty: parseFloat(import.meta.env.VITE_PENALTY_PYTHON_HARD) || 1.2,
+      },
+    },
+  };
+
+  
+  const lowerCaseTopic = topic.toLowerCase();
+  const lowerCaseDifficulty = difficulty.toLowerCase();
+  const timeLimitForQuiz = config[lowerCaseTopic]?.[lowerCaseDifficulty]?.timeLimit || 0;
+  const penaltyForQuiz = config[lowerCaseTopic]?.[lowerCaseDifficulty]?.penalty || 0;
+
+  
   const questionData =
     topic.toLowerCase() === "react"
       ? ReactQuestions[difficulty]
@@ -24,11 +59,11 @@ const QuizPage = () => {
   const [score, setScore] = useState(0);
   const [penaltyPoints, setPenaltyPoints] = useState(0);
   const [showScore, setShowScore] = useState(false);
-  const [timer, setTimer] = useState(timeLimitFromEnv);
+  const [timer, setTimer] = useState(timeLimitForQuiz);
 
   useEffect(() => {
-    setTimer(timeLimitFromEnv);
-  }, [timeLimitFromEnv]);
+    setTimer(timeLimitForQuiz);
+  }, [timeLimitForQuiz]);
 
   useEffect(() => {
     let interval;
@@ -45,32 +80,20 @@ const QuizPage = () => {
 
   const handleAnswerClick = (selectedOptionIndex) => {
     const correctOptionIndex = parseInt(questionData[currentQuestion].correctOption);
-  
-    console.log(`Selected Option Index: ${selectedOptionIndex}`);
-    console.log(`Correct Option Index: ${correctOptionIndex}`);
-  
+
     if (selectedOptionIndex === correctOptionIndex) {
-      setScore((prevScore) => {
-        const newScore = prevScore + 1;
-        console.log("Score updated:", newScore);
-        return newScore;
-      });
+      setScore((prevScore) => prevScore + 1);
     } else {
-      setPenaltyPoints((prevPenalty) => {
-        const newPenalty = prevPenalty + penaltyFromEnv;
-        console.log("Penalty updated:", newPenalty);
-        return newPenalty;
-      });
+      setPenaltyPoints((prevPenalty) => prevPenalty + penaltyForQuiz);
     }
-  
+
     handleNextQuestion();
   };
-  
 
-  const handleNextQuestion = () => {
+   const handleNextQuestion = () => {
     if (currentQuestion < questionData.length - 1) {
       setCurrentQuestion((prev) => prev + 1);
-      setTimer(timeLimitFromEnv);
+      setTimer(timeLimitForQuiz);
     } else {
       setShowScore(true);
       saveResultInLocalStorage();
@@ -79,7 +102,6 @@ const QuizPage = () => {
 
   const saveResultInLocalStorage = () => {
     const finalScore = score - penaltyPoints;
-    console.log(`Final Score Calculated: ${finalScore}`); 
     const newResult = {
       Name: userData?.name || "N/A",
       Email: userData?.email || "N/A",
@@ -98,7 +120,6 @@ const QuizPage = () => {
 
   const getFinalScore = () => {
     const finalScore = score - penaltyPoints;
-    console.log(`Final score before return: ${finalScore}`); 
     return finalScore.toFixed(1);
   };
 
@@ -144,3 +165,5 @@ const QuizPage = () => {
 };
 
 export default QuizPage;
+
+
